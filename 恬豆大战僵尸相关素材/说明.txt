@@ -1,0 +1,72 @@
+pvz版本：杂交版v2.0.88
+
+使用：
+直接将main.pak替换v2.0.88的安装目录里的main.pak
+
+
+如果想要自己用素材生成main.pak的话，就不限制版本：
+
+工具：
+先安装Windows_x64_5.0_GUI.zip里面的工具PopStudio， 用里面的解包打包功能
+
+步骤：
+1、将pvz杂交版安装目录里面的main.pak解包，解包目录是自己新建的，如pvz_unpack
+
+2、替换素材：
+将 bekki_shooter 文件夹和 bekki_static.png 都放到 pvz_unpack/reanim/ 目录中
+将素材的 ProjectilePea.png 替换 pvz_unpack/images中的原图片
+将素材的 PeaShooterSingle.reanim.compiled 替换 pvz_unpack/compiled/reanim/ 目录中的原compiled文件
+
+3、修改文字说明：
+在pvz_unpack/properties/LawnStrings.txt查找相应的名字，修改保存即可
+
+3、重新打包
+用PopStudio重新将pvz_unpack文件夹打包为main.pak，并且替换原安装目录的旧main.pak即可
+
+--------------------------------------------------------------------------------------------------------------------------
+
+全部用到的工具：
+an2020
+PVZUtil
+Popstudio
+FlashReanimExport.jsfl
+
+相关工具下载网站：
+https://wiki.pvz1.com/
+https://www.pvz.moe/
+
+视频抠像：手机就可以
+
+视频去背景：
+https://www.media.io/studio/
+
+视频转gif：
+https://tool.lu/video2gif/
+
+基本过程：
+https://tieba.baidu.com/p/6659496050
+
+------------------------------------------------------------------------------------------------------------------------------
+
+自己探索的思路和过程：
+
+从视频中截取切片，将切片抠像去背景，将视频转为gif，gif导入Adobe animate2020，接着导出序列图，
+将这些序列图数量删改到动作的帧数量（我修改的这个动作是25帧，即对应25个序列图），
+将这些序列图重新导入Adobe animate2020（原来的gif和gif导入的时候生成的图都可以删了），
+将这些序列图放在库中的一个新的文件夹里，拖拽这个文件夹到舞台，得到混合图，
+调整该混合图的大小，最后右键将其分布到关键帧即可
+以上就是自定义动作的关键过程
+
+关于其他帧的删除：
+除开locator元件所在的帧，其他的帧，全部清除
+
+以PeaShooterSingle.fla为例：
+locator所在的图层
+_guide、anim_idle、anim_head_idle、anim_shooting、anim_full_idle和anim_stem
+其中，anim_stem可用让静态贴图动起来
+替换新的人物的静态图和gif序列图的时候，需要避开anim_stem的帧的时间
+替换的时候，可用新建图层，也可将图拖拽到除开anim_stem外的anim图层：anim_blink、anim_face图层
+目前是拖拽到新建的图层
+（调整大小的时候，可以先不避开anim_stem的帧，调整完了再将和anim_stem时间重叠的帧清除）
+
+
